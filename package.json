@@ -1,6 +1,12 @@
 {
   "name": "jest-coverage-badge",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "bin/index.js",
+  "license": "MIT",
+  "bin": {
+    "tran": "./bin/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
 }
