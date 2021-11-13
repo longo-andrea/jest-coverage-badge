@@ -1,13 +1,9 @@
 const fs = require('fs').promises
 
-const writeToFile = async function (filePath, content) {
-    try {
-        fs.writeFile(filePath, content, { encoding: 'utf8' })
-    } catch (error) {
-        throw error
-    }
+const writeToFile = function (filePath, content) {
+    fs.writeFile(filePath, content, {encoding: 'utf8'})
 }
 
 module.exports = {
-    writeToFile
+    writeToFile,
 }

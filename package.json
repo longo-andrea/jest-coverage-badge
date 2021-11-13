@@ -1,13 +1,28 @@
 {
   "name": "jest-coverage-badge",
+  "description": "Create simple coverage badge for your coverage reports",
   "version": "1.0.0",
   "main": "bin/index.js",
+  "bin": "bin/index.js",
   "license": "MIT",
-  "bin": {
-    "tran": "./bin/index.js"
+  "author": "Andrea Longo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/longo-andrea/jest-coverage-badge.git"
+  },
+  "keywords": [
+    "coverage",
+    "badge",
+    "jest",
+    "coverage report"
+  ],
+  "scripts": {
+    "lint": "eslint ./bin",
+    "lint:fix": "eslint --fix ./bin"
   },
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "@longo-andrea/eslint-config-javascript": "^0.2.0",
+    "eslint": "7.22.0"
   },
   "dependencies": {
     "mkdirp": "^1.0.4"

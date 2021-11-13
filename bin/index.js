@@ -1,30 +1,36 @@
-const { readFromFile } = require('./helpers/readFromFile')
-const getConfig = require('./config/index.js')
-const { getBadge } = require('./helpers/getBadge.js')
-const { writeToFile } = require('./helpers/writeToFile.js')
-const mkdir = require("mkdirp");
+const fs = require('fs').promises
+const mkdir = require('mkdirp')
+const {readFromFile} = require('./helpers/readFromFile')
+const defaultConfig = require('./config/config.default')
+const {getBadge} = require('./helpers/getBadge.js')
+const {writeToFile} = require('./helpers/writeToFile.js')
 
+const init = async function () {
+    const {coverageSummaryPath, output} = defaultConfig
+    const fileSummary = await readFromFile(coverageSummaryPath)
+    const coverageSummary = JSON.parse(fileSummary)
+    const totalCoverageSummary = coverageSummary.total
 
-const init = async function() {
-    const config = getConfig()
+    // Clear badges folder
+    await fs.rm(output.dir, {recursive: true})
+    console.log('Badges folder cleared correctly.')
 
-    try {
-        const fileSummary = await readFromFile(config.coveragePath)
-        const coverageSummary = JSON.parse(fileSummary)
-        const totalCoverageSummary = coverageSummary.total
+    if (!totalCoverageSummary)
+        throw new Error('Total coverage summary not found')
 
-        getBadge('ciao', '10', function (result) {
-            mkdir('./badges').then(() => {
-                writeToFile('./badges/badge.svg', result)
-            })
-        });
+    // Generate badge for each summary
+    for (const summary of Object.entries(totalCoverageSummary)) {
+        const summaryKey = summary[0]
+        const summaryReport = summary[1]
 
-        if (!totalCoverageSummary)
-            throw new Error('Total coverage summary not found')
-    } catch (error) {
-        throw error
+        await getBadge(`Coverage: ${summaryKey}`, summaryReport.pct, async (result) => {
+            // Create badges dir if doesn't exists
+            await mkdir(output.dir)
+            await writeToFile(`${output.dir}/${summaryKey}-badge.svg`, result)
+        })
     }
+
+    console.log(`Badges correctly generated in folder ${output.dir}.`)
 }
 
 init()
-
