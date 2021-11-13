@@ -18,12 +18,18 @@ const init = async function () {
     if (!totalCoverageSummary)
         throw new Error('Total coverage summary not found')
 
+    // Calculate coverage average
+    const averageCoverage = Object.values(totalCoverageSummary)
+        .reduce((totalCoverage, summaryCoverage) => totalCoverage += summaryCoverage.pct, 0) / 4
+    totalCoverageSummary.average = { pct: averageCoverage }
+
     // Generate badge for each summary
     for (const summary of Object.entries(totalCoverageSummary)) {
         const summaryKey = summary[0]
         const summaryReport = summary[1]
+        const coverageLabel = summaryKey === 'average' ? 'Coverage' : `Coverage: ${summaryKey}`
 
-        await getBadge(`Coverage: ${summaryKey}`, summaryReport.pct, async (result) => {
+        await getBadge(coverageLabel, summaryReport.pct, async (result) => {
             // Create badges dir if doesn't exists
             await mkdir(output.dir)
             await writeToFile(`${output.dir}/${summaryKey}-badge.svg`, result)
