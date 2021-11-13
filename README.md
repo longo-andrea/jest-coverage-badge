@@ -1,0 +1,6 @@
+
+{"total": {"lines":{"total":8,"covered":8,"skipped":0,"pct":100},"statements":{"total":9,"covered":9,"skipped":0,"pct":100},"functions":{"total":3,"covered":3,"skipped":0,"pct":100},"branches":{"total":4,"covered":4,"skipped":0,"pct":100}}
+,"/home/andreal/development/test-apps/jest-testing-by-sample/frontend/02 Plain Vanilla/src/pages/login/mappers.ts": {"lines":{"total":2,"covered":2,"skipped":0,"pct":100},"functions":{"total":1,"covered":1,"skipped":0,"pct":100},"statements":{"total":2,"covered":2,"skipped":0,"pct":100},"branches":{"total":2,"covered":2,"skipped":0,"pct":100}}
+,"/home/andreal/development/test-apps/jest-testing-by-sample/frontend/02 Plain Vanilla/src/pages/login/validations.ts": {"lines":{"total":3,"covered":3,"skipped":0,"pct":100},"functions":{"total":0,"covered":0,"skipped":0,"pct":100},"statements":{"total":3,"covered":3,"skipped":0,"pct":100},"branches":{"total":0,"covered":0,"skipped":0,"pct":100}}
+,"/home/andreal/development/test-apps/jest-testing-by-sample/frontend/02 Plain Vanilla/src/pages/members/list/mappers.ts": {"lines":{"total":3,"covered":3,"skipped":0,"pct":100},"functions":{"total":2,"covered":2,"skipped":0,"pct":100},"statements":{"total":4,"covered":4,"skipped":0,"pct":100},"branches":{"total":2,"covered":2,"skipped":0,"pct":100}}
+}
